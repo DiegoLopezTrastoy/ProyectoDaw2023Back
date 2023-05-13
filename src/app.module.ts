@@ -18,6 +18,7 @@ import { GrupoModule } from './grupos/grupo/grupo.module';
 import { VotacionModule } from './grupos/votacion/votacion.module';
 import { OpcionModule } from './grupos/opcion/opcion.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     EventoModule,
     GrupoModule,
     OpcionModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DATABASE_HOST,
@@ -44,8 +46,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [],
+      // entities: [User],
+      dropSchema: true,
       synchronize: true,
+      autoLoadEntities: true
     }),
   ],
   controllers: [AppController],

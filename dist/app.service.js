@@ -5,16 +5,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
+const user_service_1 = require("./user/user.service");
 let AppService = class AppService {
+    constructor(usersevice) {
+        this.usersevice = usersevice;
+        this.executeSeed();
+    }
+    executeSeed() {
+        this.usersevice.create({ nombre: 'Diego', email: 'sondiegolt@gmail.com', fecha_nacimiento: '19/07/2003', num_telefono: 658679811, imagen: 'no_image.jpg' });
+    }
     getHello() {
         return 'Hello World!';
     }
 };
 AppService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [user_service_1.UserService])
 ], AppService);
 exports.AppService = AppService;
 //# sourceMappingURL=app.service.js.map

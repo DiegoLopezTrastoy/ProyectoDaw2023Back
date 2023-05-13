@@ -27,6 +27,7 @@ const grupo_module_1 = require("./grupos/grupo/grupo.module");
 const votacion_module_1 = require("./grupos/votacion/votacion.module");
 const opcion_module_1 = require("./grupos/opcion/opcion.module");
 const typeorm_1 = require("@nestjs/typeorm");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -48,6 +49,7 @@ AppModule = __decorate([
             evento_module_1.EventoModule,
             grupo_module_1.GrupoModule,
             opcion_module_1.OpcionModule,
+            config_1.ConfigModule.forRoot(),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mysql',
                 host: process.env.DATABASE_HOST,
@@ -55,8 +57,9 @@ AppModule = __decorate([
                 username: process.env.DATABASE_USERNAME,
                 password: process.env.DATABASE_PASSWORD,
                 database: process.env.DATABASE_NAME,
-                entities: [],
+                dropSchema: true,
                 synchronize: true,
+                autoLoadEntities: true
             }),
         ],
         controllers: [app_controller_1.AppController],
