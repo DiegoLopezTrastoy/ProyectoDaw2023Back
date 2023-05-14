@@ -14,6 +14,9 @@ export class Comunidad {
     @Column()
     saldo: Number;
 
+    @Column({default: true, type: "boolean"})
+    activo: boolean;
+
     @ManyToMany(() => Vecino, (vecino) => vecino.comunidad)
     vecinos: Vecino[];
 }

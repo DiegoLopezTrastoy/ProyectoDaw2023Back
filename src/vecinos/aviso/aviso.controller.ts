@@ -19,16 +19,16 @@ export class AvisoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.avisoService.findOne(+id);
+    return this.avisoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAvisoDto: UpdateAvisoDto) {
-    return this.avisoService.update(+id, updateAvisoDto);
+    return this.avisoService.update(id, updateAvisoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.avisoService.remove(+id);
+    return this.avisoService.remove(id);
   }
 }

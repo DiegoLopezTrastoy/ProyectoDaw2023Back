@@ -13,6 +13,9 @@ export class Aviso {
     @Column()
     texto: string;
 
+    @Column({default: true, type: "boolean", select: false})
+    activo: boolean;
+
     @ManyToOne(() => Vecino)
     vecino: Vecino;
 }

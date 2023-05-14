@@ -12,7 +12,7 @@ export class UserService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    this.userRepository.save(createUserDto);
+    return this.userRepository.save(createUserDto);
   }
 
   findAll() {
@@ -24,7 +24,7 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const user: User = await this.userRepository.findOneBy({id});
+    const user: User = await this.userRepository.findOneBy({id, activo: true});
     if (user) {
       Object.assign(user, updateUserDto);
       return this.userRepository.save(user);
@@ -32,7 +32,7 @@ export class UserService {
   }
 
   async remove(id: string) {
-    const user: User = await this.userRepository.findOneBy({id});
+    const user: User = await this.userRepository.findOneBy({id, activo: true});
     if (user) {
       user.activo = false;
       this.userRepository.save(user);
