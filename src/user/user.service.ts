@@ -19,11 +19,11 @@ export class UserService {
     return this.userRepository.find({where: {activo: true}});
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.userRepository.findOneBy({id, activo: true});
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
     const user: User = await this.userRepository.findOneBy({id});
     if (user) {
       Object.assign(user, updateUserDto);
@@ -31,7 +31,7 @@ export class UserService {
     }
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const user: User = await this.userRepository.findOneBy({id});
     if (user) {
       user.activo = false;
