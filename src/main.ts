@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { config } from 'dotenv';
+const { NestFactory } = require('@nestjs/core');
+const { AppModule } = require('./app.module');
+const { config } = require('dotenv');
 
 config();
 

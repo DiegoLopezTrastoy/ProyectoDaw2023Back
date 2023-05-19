@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateReunionDto } from './dto/create-reunion.dto';
 import { UpdateReunionDto } from './dto/update-reunion.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Reunion } from 'src/entities/reunion.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ReunionService {
+  constructor(
+    @InjectRepository(Reunion)
+    private readonly presidenteRepository: Repository<Reunion>,
+  ) {}
+  
   create(createReunionDto: CreateReunionDto) {
-    return 'This action adds a new reunion';
+    return this.presidenteRepository.save(createReunionDto);
   }
 
   findAll() {
-    return `This action returns all reunion`;
+    return this.presidenteRepository.findBy({activo: true});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} reunion`;
+  findOne(id: string) {
+    return this.presidenteRepository.findOneBy({id, activo: true});
   }
 
-  update(id: number, updateReunionDto: UpdateReunionDto) {
-    return `This action updates a #${id} reunion`;
+  update(id: string, updateReunionDto: UpdateReunionDto) {
+    return this.presidenteRepository.update({id, activo: true}, updateReunionDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} reunion`;
+  remove(id: string) {
+    return this.presidenteRepository.update({id, activo: true}, {activo: false});
   }
 }

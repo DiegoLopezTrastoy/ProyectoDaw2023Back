@@ -19,16 +19,16 @@ export class InvitadoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.invitadoService.findOne(+id);
+    return this.invitadoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateInvitadoDto: UpdateInvitadoDto) {
-    return this.invitadoService.update(+id, updateInvitadoDto);
+    return this.invitadoService.update(id, updateInvitadoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.invitadoService.remove(+id);
+    return this.invitadoService.remove(id);
   }
 }

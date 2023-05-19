@@ -1,26 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { CreateVecinoDto } from './dto/create-vecino.dto';
 import { UpdateVecinoDto } from './dto/update-vecino.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Vecino } from '../../entities/vecino.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class VecinoService {
+  constructor(
+    @InjectRepository(Vecino)
+    private readonly vecinoRepository: Repository<Vecino>,
+  ) {}
+
   create(createVecinoDto: CreateVecinoDto) {
-    return 'This action adds a new vecino';
+    return this.vecinoRepository.save(createVecinoDto);
   }
 
   findAll() {
-    return `This action returns all vecino`;
+    return this.vecinoRepository.findBy({ activo: true });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} vecino`;
+  findOne(id: string) {
+    return this.vecinoRepository.findOneBy({ id, activo: true });
   }
 
-  update(id: number, updateVecinoDto: UpdateVecinoDto) {
-    return `This action updates a #${id} vecino`;
+  update(id: string, updateVecinoDto: UpdateVecinoDto) {
+    return this.vecinoRepository.update({ id, activo: true }, updateVecinoDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} vecino`;
+  remove(id: string) {
+    return this.vecinoRepository.update(
+      { id, activo: true },
+      { activo: false },
+    );
   }
 }

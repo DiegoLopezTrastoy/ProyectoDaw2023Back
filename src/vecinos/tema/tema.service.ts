@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTemaDto } from './dto/create-tema.dto';
 import { UpdateTemaDto } from './dto/update-tema.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Tema } from 'src/entities/tema.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TemaService {
+  constructor(
+    @InjectRepository(Tema)
+    private readonly temaRepository: Repository<Tema>,
+  ) {}
+
   create(createTemaDto: CreateTemaDto) {
-    return 'This action adds a new tema';
+    return this.temaRepository.save(createTemaDto);
   }
 
   findAll() {
-    return `This action returns all tema`;
+    return this.temaRepository.findBy({activo: true});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tema`;
+  findOne(id: string) {
+    return this.temaRepository.findOneBy({id});
   }
 
-  update(id: number, updateTemaDto: UpdateTemaDto) {
-    return `This action updates a #${id} tema`;
+  update(id: string, updateTemaDto: UpdateTemaDto) {
+    return this.temaRepository.update({id, activo:true}, updateTemaDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tema`;
+  remove(id: string) {
+    return this.temaRepository.update({id, activo: true}, {activo: true});
   }
 }

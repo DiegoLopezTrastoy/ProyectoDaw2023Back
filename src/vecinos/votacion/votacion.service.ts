@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { CreateVotacionDto } from './dto/create-votacion.dto';
+import { CreateVotacionVecinosDto } from './dto/create-votacion.dto';
 import { UpdateVotacionDto } from './dto/update-votacion.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { VotacionVecinos } from 'src/entities/votacionVecinos.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class VotacionService {
-  create(createVotacionDto: CreateVotacionDto) {
-    return 'This action adds a new votacion';
+  constructor(
+    @InjectRepository(VotacionVecinos)
+    private readonly votacionRepository: Repository<VotacionVecinos>,
+  ) {}
+
+  create(createVotacionDto: CreateVotacionVecinosDto) {
+    return this.votacionRepository.save(createVotacionDto);
   }
 
   findAll() {
-    return `This action returns all votacion`;
+    return this.votacionRepository.findBy({activo: true});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} votacion`;
+  findOne(id: string) {
+    return this.votacionRepository.findOneBy({id, activo: true});
   }
 
-  update(id: number, updateVotacionDto: UpdateVotacionDto) {
-    return `This action updates a #${id} votacion`;
+  update(id: string, updateVotacionDto: UpdateVotacionDto) {
+    return this.votacionRepository.update({id, activo: true}, updateVotacionDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} votacion`;
+  remove(id: string) {
+    return this.votacionRepository.update({id, activo: true}, {activo: false});
   }
 }

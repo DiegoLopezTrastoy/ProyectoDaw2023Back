@@ -19,16 +19,16 @@ export class VecinoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.vecinoService.findOne(+id);
+    return this.vecinoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVecinoDto: UpdateVecinoDto) {
-    return this.vecinoService.update(+id, updateVecinoDto);
+    return this.vecinoService.update(id, updateVecinoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.vecinoService.remove(+id);
+    return this.vecinoService.remove(id);
   }
 }

@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateIngresoDto } from './dto/create-ingreso.dto';
 import { UpdateIngresoDto } from './dto/update-ingreso.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Ingreso } from 'src/entities/ingreso.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class IngresoService {
+  constructor(
+    @InjectRepository(Ingreso)
+    private readonly gastoRepository: Repository<Ingreso>,
+  ) {}
   create(createIngresoDto: CreateIngresoDto) {
-    return 'This action adds a new ingreso';
+    return this.gastoRepository.save(createIngresoDto);
   }
 
   findAll() {
-    return `This action returns all ingreso`;
+    return this.gastoRepository.find({ where: { activo: true } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ingreso`;
+  findOne(id: string) {
+    return this.gastoRepository.findOneBy({ id, activo: true });
   }
 
-  update(id: number, updateIngresoDto: UpdateIngresoDto) {
-    return `This action updates a #${id} ingreso`;
+  update(id: string, updateIngresoDto: UpdateIngresoDto) {
+    return this.gastoRepository.update({ id, activo: true }, updateIngresoDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ingreso`;
+  remove(id: string) {
+    return this.gastoRepository.update({ id, activo: true }, { activo: false });
   }
 }

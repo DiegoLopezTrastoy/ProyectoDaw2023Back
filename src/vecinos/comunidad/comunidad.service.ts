@@ -1,26 +1,40 @@
 import { Injectable } from '@nestjs/common';
 import { CreateComunidadDto } from './dto/create-comunidad.dto';
 import { UpdateComunidadDto } from './dto/update-comunidad.dto';
+import { Comunidad } from '../../entities/comunidad.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ComunidadService {
+  constructor(
+    @InjectRepository(Comunidad)
+    private readonly comunidadRepository: Repository<Comunidad>,
+  ) {}
+
   create(createComunidadDto: CreateComunidadDto) {
-    return 'This action adds a new comunidad';
+    return this.comunidadRepository.save(createComunidadDto);
   }
 
   findAll() {
-    return `This action returns all comunidad`;
+    return this.comunidadRepository.find({ where: { activo: true } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} comunidad`;
+  findOne(id: string) {
+    return this.comunidadRepository.findOne({ where: { id, activo: true } });
   }
 
-  update(id: number, updateComunidadDto: UpdateComunidadDto) {
-    return `This action updates a #${id} comunidad`;
+  update(id: string, updateComunidadDto: UpdateComunidadDto) {
+    return this.comunidadRepository.update(
+      { id, activo: true },
+      updateComunidadDto,
+    );
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} comunidad`;
+  remove(id: string) {
+    return this.comunidadRepository.update(
+      { id, activo: true },
+      { activo: false },
+    );
   }
 }

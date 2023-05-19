@@ -1,26 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateGastoDto } from './dto/create-gasto.dto';
 import { UpdateGastoDto } from './dto/update-gasto.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Gasto } from 'src/entities/gasto.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class GastoService {
+  constructor(
+    @InjectRepository(Gasto)
+    private readonly gastoRepository: Repository<Gasto>,
+  ) {}
+
   create(createGastoDto: CreateGastoDto) {
-    return 'This action adds a new gasto';
+    return this.gastoRepository.save(createGastoDto);
   }
 
   findAll() {
-    return `This action returns all gasto`;
+    return this.gastoRepository.find({ where: { activo: true } });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} gasto`;
+  findOne(id: string) {
+    return this.gastoRepository.findOneBy({ id, activo: true });
   }
 
-  update(id: number, updateGastoDto: UpdateGastoDto) {
-    return `This action updates a #${id} gasto`;
+  update(id: string, updateGastoDto: UpdateGastoDto) {
+    return this.gastoRepository.update({ id, activo: true }, updateGastoDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} gasto`;
+  remove(id: string) {
+    return this.gastoRepository.update({ id, activo: true }, { activo: false });
   }
 }

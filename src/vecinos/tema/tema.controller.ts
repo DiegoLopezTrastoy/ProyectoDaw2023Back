@@ -19,16 +19,16 @@ export class TemaController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.temaService.findOne(+id);
+    return this.temaService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTemaDto: UpdateTemaDto) {
-    return this.temaService.update(+id, updateTemaDto);
+    return this.temaService.update(id, updateTemaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.temaService.remove(+id);
+    return this.temaService.remove(id);
   }
 }

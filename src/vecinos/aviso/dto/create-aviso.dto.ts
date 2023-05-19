@@ -1,4 +1,4 @@
-import { Vecino } from "src/vecinos/vecino/entities/vecino.entity";
+import { Vecino } from "src/entities/vecino.entity";
 
 export class CreateAvisoDto {
     imagen: string;

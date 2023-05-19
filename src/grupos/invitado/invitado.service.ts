@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { CreateInvitadoDto } from './dto/create-invitado.dto';
 import { UpdateInvitadoDto } from './dto/update-invitado.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Invitado } from 'src/entities/invitado.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class InvitadoService {
+  constructor(
+    @InjectRepository(Invitado) private readonly invitadoRepository: Repository<Invitado>,
+  ) {}
+
   create(createInvitadoDto: CreateInvitadoDto) {
-    return 'This action adds a new invitado';
+    return this.invitadoRepository.save(createInvitadoDto);
   }
 
   findAll() {
-    return `This action returns all invitado`;
+    return this.invitadoRepository.findBy({activo: true});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} invitado`;
+  findOne(id: string) {
+    return this.invitadoRepository.findOneBy({id, activo: true});
   }
 
-  update(id: number, updateInvitadoDto: UpdateInvitadoDto) {
-    return `This action updates a #${id} invitado`;
+  update(id: string, updateInvitadoDto: UpdateInvitadoDto) {
+    return this.invitadoRepository.update({id, activo: true}, updateInvitadoDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} invitado`;
+  remove(id: string) {
+    return this.invitadoRepository.update({id, activo: true}, {activo: false});
   }
 }

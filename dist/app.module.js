@@ -28,22 +28,6 @@ const votacion_module_1 = require("./grupos/votacion/votacion.module");
 const opcion_module_1 = require("./grupos/opcion/opcion.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
-const user_entity_1 = require("./user/entities/user.entity");
-const comunidad_entity_1 = require("./vecinos/comunidad/entities/comunidad.entity");
-const presidente_entity_1 = require("./vecinos/presidente/entities/presidente.entity");
-const secretario_entity_1 = require("./vecinos/secretario/entities/secretario.entity");
-const vecino_entity_1 = require("./vecinos/vecino/entities/vecino.entity");
-const aviso_entity_1 = require("./vecinos/aviso/entities/aviso.entity");
-const gasto_entity_1 = require("./vecinos/gasto/entities/gasto.entity");
-const ingreso_entity_1 = require("./vecinos/ingreso/entities/ingreso.entity");
-const reunion_entity_1 = require("./vecinos/reunion/entities/reunion.entity");
-const tema_entity_1 = require("./vecinos/tema/entities/tema.entity");
-const votacion_entity_1 = require("./grupos/votacion/entities/votacion.entity");
-const anfitrion_entity_1 = require("./grupos/anfitrion/entities/anfitrion.entity");
-const evento_entity_1 = require("./grupos/evento/entities/evento.entity");
-const grupo_entity_1 = require("./grupos/grupo/entities/grupo.entity");
-const invitado_entity_1 = require("./grupos/invitado/entities/invitado.entity");
-const opcion_entity_1 = require("./grupos/opcion/entities/opcion.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -73,27 +57,9 @@ AppModule = __decorate([
                 username: process.env.DATABASE_USERNAME,
                 password: process.env.DATABASE_PASSWORD,
                 database: process.env.DATABASE_NAME,
-                entities: [
-                    user_entity_1.User,
-                    comunidad_entity_1.Comunidad,
-                    presidente_entity_1.Presidente,
-                    secretario_entity_1.Secretario,
-                    vecino_entity_1.Vecino,
-                    aviso_entity_1.Aviso,
-                    gasto_entity_1.Gasto,
-                    ingreso_entity_1.Ingreso,
-                    reunion_entity_1.Reunion,
-                    tema_entity_1.Tema,
-                    votacion_entity_1.Votacion,
-                    anfitrion_entity_1.Anfitrion,
-                    evento_entity_1.Evento,
-                    grupo_entity_1.Grupo,
-                    invitado_entity_1.Invitado,
-                    opcion_entity_1.Opcion,
-                    votacion_entity_1.Votacion,
-                ],
-                dropSchema: true,
-                synchronize: true,
+                dropSchema: false,
+                synchronize: false,
+                autoLoadEntities: true
             }),
         ],
         controllers: [app_controller_1.AppController],

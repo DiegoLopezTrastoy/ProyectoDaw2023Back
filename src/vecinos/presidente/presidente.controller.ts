@@ -19,16 +19,16 @@ export class PresidenteController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.presidenteService.findOne(+id);
+    return this.presidenteService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePresidenteDto: UpdatePresidenteDto) {
-    return this.presidenteService.update(+id, updatePresidenteDto);
+    return this.presidenteService.update(id, updatePresidenteDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.presidenteService.remove(+id);
+    return this.presidenteService.remove(id);
   }
 }

@@ -19,16 +19,16 @@ export class AnfitrionController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.anfitrionService.findOne(+id);
+    return this.anfitrionService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAnfitrionDto: UpdateAnfitrionDto) {
-    return this.anfitrionService.update(+id, updateAnfitrionDto);
+    return this.anfitrionService.update(id, updateAnfitrionDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.anfitrionService.remove(+id);
+    return this.anfitrionService.remove(id);
   }
 }

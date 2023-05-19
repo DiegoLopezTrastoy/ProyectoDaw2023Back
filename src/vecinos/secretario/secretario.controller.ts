@@ -19,16 +19,16 @@ export class SecretarioController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.secretarioService.findOne(+id);
+    return this.secretarioService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSecretarioDto: UpdateSecretarioDto) {
-    return this.secretarioService.update(+id, updateSecretarioDto);
+    return this.secretarioService.update(id, updateSecretarioDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.secretarioService.remove(+id);
+    return this.secretarioService.remove(id);
   }
 }

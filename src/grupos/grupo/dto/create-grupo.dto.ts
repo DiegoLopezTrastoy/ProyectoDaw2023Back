@@ -1,1 +1,4 @@
-export class CreateGrupoDto {}
+export class CreateGrupoDto {
+    nombre: string;
+    imagen: string;
+}

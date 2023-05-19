@@ -13,16 +13,15 @@ exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user/user.service");
 const aviso_service_1 = require("./vecinos/aviso/aviso.service");
+const vecino_service_1 = require("./vecinos/vecino/vecino.service");
 let AppService = class AppService {
-    constructor(userSevice, avisoService) {
+    constructor(userSevice, avisoService, vecinoService) {
         this.userSevice = userSevice;
         this.avisoService = avisoService;
-        this.executeSeed();
+        this.vecinoService = vecinoService;
     }
     async executeSeed() {
         const user = await this.userSevice.create({ nombre: 'Diego', email: 'sondiegolt@gmail.com', fecha_nacimiento: '19/07/2003', num_telefono: 658679811, imagen: 'no_image.jpg' });
-        const vecino = await this.vecinoService.create({});
-        this.avisoService.create({ imagen: "no_image.jpg", texto: "Chapa rota", vecino });
     }
     getHello() {
         return 'Hello World!';
@@ -31,7 +30,8 @@ let AppService = class AppService {
 AppService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [user_service_1.UserService,
-        aviso_service_1.AvisoService])
+        aviso_service_1.AvisoService,
+        vecino_service_1.VecinoService])
 ], AppService);
 exports.AppService = AppService;
 //# sourceMappingURL=app.service.js.map

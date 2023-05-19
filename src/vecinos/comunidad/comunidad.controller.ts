@@ -19,16 +19,16 @@ export class ComunidadController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.comunidadService.findOne(+id);
+    return this.comunidadService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateComunidadDto: UpdateComunidadDto) {
-    return this.comunidadService.update(+id, updateComunidadDto);
+    return this.comunidadService.update(id, updateComunidadDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.comunidadService.remove(+id);
+    return this.comunidadService.remove(id);
   }
 }

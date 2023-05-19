@@ -19,16 +19,16 @@ export class ReunionController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.reunionService.findOne(+id);
+    return this.reunionService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateReunionDto: UpdateReunionDto) {
-    return this.reunionService.update(+id, updateReunionDto);
+    return this.reunionService.update(id, updateReunionDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.reunionService.remove(+id);
+    return this.reunionService.remove(id);
   }
 }

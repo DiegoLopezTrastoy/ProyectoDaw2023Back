@@ -19,16 +19,16 @@ export class IngresoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ingresoService.findOne(+id);
+    return this.ingresoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateIngresoDto: UpdateIngresoDto) {
-    return this.ingresoService.update(+id, updateIngresoDto);
+    return this.ingresoService.update(id, updateIngresoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.ingresoService.remove(+id);
+    return this.ingresoService.remove(id);
   }
 }
