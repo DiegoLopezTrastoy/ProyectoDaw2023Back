@@ -28,6 +28,7 @@ const votacion_module_1 = require("./grupos/votacion/votacion.module");
 const opcion_module_1 = require("./grupos/opcion/opcion.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
+const image_module_1 = require("./image/image.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -61,6 +62,7 @@ AppModule = __decorate([
                 synchronize: false,
                 autoLoadEntities: true
             }),
+            image_module_1.ImageModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

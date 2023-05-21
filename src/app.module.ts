@@ -35,6 +35,7 @@ import { Evento } from './entities/evento.entity';
 import { Grupo } from './entities/grupo.entity';
 import { Invitado } from './entities/invitado.entity';
 import { Opcion } from './entities/opcion.entity';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { Opcion } from './entities/opcion.entity';
       synchronize: false,
       autoLoadEntities: true
     }),
+    ImageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
