@@ -22,4 +22,7 @@ export class User {
 
     @Column('boolean', {default: true, select: false})
     activo: boolean;
+
+    @Column()
+    password: string;
 }

@@ -1,0 +1,19 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 5000,
+    "username": "proyectoFinalDaw2223",
+    "password": "EstaEsMiContrasena",
+    "database": "proyectoFinalDaw2223",
+    "synchronize": true,
+    "logging": true,
+    "entities": [
+      "src/entities/*.ts"
+    ],
+    "migrations": [
+      "src/migration/**/*.ts"
+    ],
+    "cli": {
+      "migrationsDir": "src/migration"
+    }
+  }
