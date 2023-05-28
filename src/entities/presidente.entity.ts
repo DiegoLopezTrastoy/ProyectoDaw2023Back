@@ -1,7 +1,8 @@
 import { User } from "src/entities/user.entity";
 import { Comunidad } from "src/entities/comunidad.entity";
-import { Column, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Presidente {
 
     @PrimaryGeneratedColumn("uuid")
@@ -17,9 +18,11 @@ export class Presidente {
     activo: boolean;
 
     @OneToOne(() => User)
+    @JoinColumn()
     user: User
 
     @ManyToMany(() => Comunidad)
+    @JoinTable()
     comunidades: Comunidad[];
 }
 

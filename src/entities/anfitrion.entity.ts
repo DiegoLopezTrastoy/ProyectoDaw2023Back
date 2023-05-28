@@ -1,5 +1,5 @@
 import { User } from "src/entities/user.entity";
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Anfitrion {
@@ -11,5 +11,6 @@ export class Anfitrion {
     activo: boolean;
 
     @OneToOne(() => User)
+    @JoinColumn()
     user: User;
 }

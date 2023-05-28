@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Vecino } from "src/entities/vecino.entity";
 import { Gasto } from "src/entities/gasto.entity";
 
@@ -18,5 +18,6 @@ export class Comunidad {
     activo: boolean;
 
     @ManyToMany(() => Vecino, (vecino) => vecino.comunidad)
+    @JoinTable()
     vecinos: Vecino[];
 }

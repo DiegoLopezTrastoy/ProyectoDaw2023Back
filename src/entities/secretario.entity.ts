@@ -1,6 +1,6 @@
 import { User } from "src/entities/user.entity";
 import { Comunidad } from "src/entities/comunidad.entity";
-import { Column, Entity, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Secretario {
@@ -18,8 +18,10 @@ export class Secretario {
     activo: boolean;
 
     @OneToOne(() => User)
+    @JoinColumn()
     user: User
 
     @ManyToMany(() => Comunidad)
+    @JoinTable()
     comunidades: Comunidad[];
 }

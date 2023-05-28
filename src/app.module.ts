@@ -19,22 +19,6 @@ import { VotacionModule } from './grupos/votacion/votacion.module';
 import { OpcionModule } from './grupos/opcion/opcion.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { User } from './entities/user.entity';
-import { Comunidad } from './entities/comunidad.entity';
-import { Presidente } from './entities/presidente.entity';
-import { Secretario } from './entities/secretario.entity';
-import { Vecino } from './entities/vecino.entity';
-import { Aviso } from './entities/aviso.entity';
-import { Gasto } from './entities/gasto.entity';
-import { Ingreso } from './entities/ingreso.entity';
-import { Reunion } from './entities/reunion.entity';
-import { Tema } from './entities/tema.entity';
-import { VotacionGrupos } from './entities/votacionGrupos.entity';
-import { Anfitrion } from './entities/anfitrion.entity';
-import { Evento } from './entities/evento.entity';
-import { Grupo } from './entities/grupo.entity';
-import { Invitado } from './entities/invitado.entity';
-import { Opcion } from './entities/opcion.entity';
 import { ImageModule } from './image/image.module';
 
 @Module({
@@ -65,7 +49,8 @@ import { ImageModule } from './image/image.module';
       database: process.env.DATABASE_NAME,
       dropSchema: false,
       synchronize: false,
-      autoLoadEntities: true
+      entities: ["dist/**/*.entity{.ts,.js}"]
+      
     }),
     ImageModule,
   ],

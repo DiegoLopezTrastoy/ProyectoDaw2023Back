@@ -60,7 +60,7 @@ AppModule = __decorate([
                 database: process.env.DATABASE_NAME,
                 dropSchema: false,
                 synchronize: false,
-                autoLoadEntities: true
+                entities: ["dist/**/*.entity{.ts,.js}"]
             }),
             image_module_1.ImageModule,
         ],

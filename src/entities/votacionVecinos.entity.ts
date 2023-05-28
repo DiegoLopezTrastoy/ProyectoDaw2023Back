@@ -1,6 +1,6 @@
 import { Tema } from "src/entities/tema.entity";
 import { Vecino } from "src/entities/vecino.entity";
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class VotacionVecinos {
@@ -15,6 +15,7 @@ export class VotacionVecinos {
     activo: boolean;
 
     @ManyToMany(() => Vecino)
+    @JoinTable()
     vecinos: Vecino[];
 
     @ManyToOne(() => Tema)

@@ -1,7 +1,6 @@
 import { User } from "src/entities/user.entity";
-import { Aviso } from "src/entities/aviso.entity";
 import { Comunidad } from "src/entities/comunidad.entity";
-import { Column, Entity, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Vecino {
@@ -15,9 +14,11 @@ export class Vecino {
     activo: boolean;
 
     @OneToOne(() => User)
+    @JoinColumn()
     user: User
 
     @ManyToMany(() => Comunidad, (comunidad) => comunidad.vecinos)
+    @JoinTable()
     comunidad: Comunidad;
 
 }
